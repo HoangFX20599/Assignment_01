@@ -1,0 +1,437 @@
+/* Reset các căn chỉnh về 0 tránh do tính kế thừa mà làm rối */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0px;
+}
+/* ##########################################CÁC PHẦN TỬ LỚN */
+.cv-document {
+  box-sizing: border-box;
+  border: none;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  margin: 40px;
+  padding: 0;
+  width: 100%;
+  font-family: arial, sans-serif, tahoma;
+  font-size: 10pt;
+}
+
+.cv-page {
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  text-decoration: none;
+  width: 900px;
+  min-height: 900px;
+  margin: 0 auto;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  position: relative;
+
+  padding: 40px;
+}
+
+.section-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  padding-bottom: 5px;
+}
+.section-content {
+  margin-top: 20px;
+  text-align: justify;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+/* -----------------------------1: MỤC TIÊU NGHỀ NGHIỆP-------------------------------------- */
+.parent-div {
+  /* background-color: blueviolet; */
+  display: flex; /* Sử dụng thuộc tính flex để các thẻ con được xếp trên cùng một dòng */
+
+  margin-bottom: 40px; /* Để các đối tượng cách nhau một khoảng trống dễ nhìn */
+}
+.left-div {
+  /* background-color: rgb(136, 136, 245); */
+  flex: 1; /*Thẻ con bên trái sẽ chiếm hết độ rộng vùng trống của thẻ mẹ*/
+}
+.right-div {
+  /* background-color: aquamarine; */
+  /* flex: 2;  */
+  display: flex; /* Sử dụng thuộc tính flex để căn giữa hình ảnh trong thẻ div con bên phải */
+  justify-content: center; /* Canh giữa hình ảnh theo trục x */
+  align-items: flex-start;
+  margin: 2px 1px auto 1px;
+}
+.avatar {
+  width: 113px; /* Đặt chiều rộng của hình ảnh */
+  height: 113px; /* Đặt chiều cao của hình ảnh */
+
+  overflow: hidden; /*Ẩn các nội dung bị tràn ra ngoài thẻ div*/
+}
+
+.avatar img {
+  width: 100%; /* Chiều rộng của hình ảnh sẽ bằng với chiều rộng của thẻ div */
+  height: 100%; /* Chiều cao của hình ảnh sẽ bằng với chiều cao của thẻ div */
+  object-fit: cover; /* Tự động điều chỉnh kích thước của hình ảnh để phù hợp với kích thước của thẻ div */
+}
+
+.table-info {
+  width: 100%;
+  text-align: left;
+}
+
+/* .table-info,
+td,
+th {
+  border: 1px solid #0e0e0e;
+  border-collapse: collapse;
+  table-layout: fixed;
+} */
+
+td,
+th {
+  padding: 6px 10px;
+}
+th {
+  width: 15%;
+  padding-left: 0;
+}
+
+/* -----------------------------2 và 3: HỌC VẤN - KINH NGHIỆM-------------------------- */
+/* mục này dùng inline-block */
+.timeLine {
+  margin-left: 5px;
+  position: relative;
+}
+
+.line1,
+.line2 {
+  margin-left: 5px;
+  border-bottom: solid 1px rgba(222, 222, 222, 0.5);
+  /* border-bottom: solid 1px rgba(100, 57, 57, 0.5); */
+  padding-bottom: 15px;
+  padding-top: 10px;
+
+  font-size: 0px;
+  letter-spacing: 0px;
+}
+
+.time {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+
+  font-size: 10pt;
+  letter-spacing: 1px;
+}
+
+.content {
+  display: inline-block;
+  width: 70%;
+
+  font-size: 10pt;
+  letter-spacing: 1px;
+}
+
+.timeLine::before {
+  content: "";
+  background-color: rgb(74, 74, 74);
+  position: absolute;
+
+  top: 0px;
+  bottom: 0px;
+  left: -1px;
+
+  height: calc(100% - 20px);
+  width: 1px;
+}
+.time-1,
+.time-2 {
+  position: relative;
+  margin-left: 10px;
+}
+.time-1::before,
+.time-2::before {
+  content: "";
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  left: -18px;
+  top: 8px;
+
+  border-radius: 50%;
+  background-color: rgb(1, 1, 1);
+}
+/* -----------------------------4: HOẠT ĐỘNG-------------------------------------- */
+/* do  inline-block đã dùng cho 2 mục phía trên nên vc lặp lại sẽ ko học đc gì mới do đó các phần sau này sẽ dùng các thứ về grid */
+.hoat-dong {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: minmax(60px, auto);
+  row-gap: 30px;
+  grid-template-areas:
+    "a1 b1"
+    "a2 b2";
+  position: relative;
+}
+.time-hd-1 {
+  grid-area: a1;
+}
+.time-hd-2 {
+  grid-area: a2;
+}
+.hd-1 {
+  grid-area: b1;
+}
+.hd-2 {
+  grid-area: b2;
+}
+/* Tạo boder bottom */
+.time-hd-1::after {
+  content: "";
+  background-color: rgba(222, 222, 222, 0.5);
+  position: absolute;
+  top: 100%;
+  right: 0px;
+  bottom: 0px;
+  left: 10px;
+
+  width: 98%;
+  height: 1px;
+}
+/* Tạo boder bottom */
+.time-hd-2::after {
+  content: "";
+  background-color: rgba(222, 222, 222, 0.5);
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  bottom: 0px;
+  left: 10px;
+
+  width: 98%;
+  height: 1px;
+}
+
+/* -----------------------------5: KỸ NĂNG-------------------------------------- */
+.ky-nang {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: minmax(30px, auto);
+  row-gap: 10px;
+  grid-template-areas:
+    "a1 b1"
+    "a2 b2"
+    "a3 b3"
+    "a4 b4";
+  position: relative;
+}
+.skill-1 {
+  grid-area: a1;
+}
+.skill-2 {
+  grid-area: a2;
+}
+.skill-3 {
+  grid-area: a3;
+}
+.skill-4 {
+  grid-area: a4;
+}
+.skill-kn-1 {
+  grid-area: b1;
+}
+.skill-kn-2 {
+  grid-area: b2;
+}
+.skill-kn-3 {
+  grid-area: b3;
+}
+.skill-kn-4 {
+  grid-area: b4;
+}
+/* Tạo boder bottom */
+.skill-1::after {
+  content: "";
+  background-color: rgba(222, 222, 222, 0.5);
+  position: absolute;
+  top: 100%;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 1px;
+}
+/* Tạo boder bottom */
+.skill-2::after {
+  content: "";
+  background-color: rgba(222, 222, 222, 0.5);
+  position: absolute;
+  top: 75%;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 1px;
+}
+/* Tạo boder bottom */
+.skill-3::after {
+  content: "";
+  background-color: rgba(222, 222, 222, 0.5);
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 1px;
+}
+/* Tạo boder bottom */
+.skill-4::after {
+  content: "";
+  background-color: rgba(222, 222, 222, 0.5);
+  position: absolute;
+  top: 25%;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 1px;
+}
+
+/* -----------------------------6: CHỨNG CHỈ-GIẢI THƯỞNG-------------------------------------- */
+.chung-chi {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: minmax(40px, auto);
+  grid-template-areas:
+    "a1 b1"
+    "a2 b2";
+  position: relative;
+}
+.time-cc-1 {
+  grid-area: a1;
+}
+.time-cc-2 {
+  grid-area: a2;
+}
+.cc-1 {
+  grid-area: b1;
+}
+.cc-2 {
+  grid-area: b2;
+}
+/* Tạo boder bottom */
+.time-cc-1::after {
+  content: "";
+  background-color: rgba(222, 222, 222, 0.5);
+  position: absolute;
+  top: 80%;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 1px;
+}
+/* Tạo boder bottom */
+.time-cc-2::after {
+  content: "";
+  background-color: rgba(222, 222, 222, 0.5);
+  position: absolute;
+  top: 30%;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+  width: 100%;
+  height: 1px;
+}
+
+/* -----------------------------7: SỞ THÍCH-------------------------------------- */
+.so-thich {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: minmax(60px, auto);
+  grid-template-areas:
+    "a1 b1"
+    "a2 b2";
+}
+.time-st-1 {
+  grid-area: a1;
+}
+.time-st-2 {
+  grid-area: a2;
+}
+.st-1 {
+  grid-area: b1;
+}
+.st-2 {
+  grid-area: b2;
+}
+.so-thich li {
+  margin-left: 20px;
+}
+/* ############################################CÁC PHẦN TỬ NHỎ */
+h1 {
+  padding-bottom: 5px;
+  color: #0e2452;
+  font-size: 3em;
+  /* text-shadow: 10px -5px 5px rgb(74, 2, 175); */
+  /* ngang, dọc, rộng, màu đổ trái phải thì cho giá trị âm là oke */
+}
+
+h2 {
+  text-transform: uppercase;
+  font-weight: bold;
+
+  padding-bottom: 5px;
+}
+h3 {
+  font-weight: inherit;
+  font-style: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+
+  width: 100%;
+  font-family: arial, sans-serif, tahoma;
+  font-size: 10pt;
+  margin-bottom: 10px;
+}
+.du-an ul {
+  /* padding-left: 25px; */
+  margin-left: 25px;
+}
+.lien-he ol {
+  padding-left: 25px;
+  /* margin-left: 25px; */
+}
+.lien-he a {
+  text-decoration: none;
+}
+.border-footer {
+  border-bottom: rgba(222, 222, 222, 0.5) solid 1px;
+}
+
+.skill-1,
+.skill-2,
+.skill-3,
+.skill-4 {
+  font-weight: bold;
+}
